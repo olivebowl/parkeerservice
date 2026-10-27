@@ -1,6 +1,6 @@
 [project]
 name = "parkeerservice"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Home Assistant integration for the parkeerservice used in several cities in the Netherlands."
 readme = "README.md"
 license = "EUPL-1.2"
@@ -11,6 +11,7 @@ dependencies = []
 [dependency-groups]
 dev = [
     "aioresponses>=0.7.9",
+    "freezegun>=1.5.1",
     "mypy>=1.13",
     "pre-commit>=4.0",
     "pytest-homeassistant-custom-component",
