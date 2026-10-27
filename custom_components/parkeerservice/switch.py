@@ -7,7 +7,6 @@ from typing import TYPE_CHECKING, Any
 from homeassistant.components.switch import SwitchEntity
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
-from homeassistant.util import dt as dt_util
 
 from .api import Session, normalize_plate
 from .const import CONF_CARS, CONF_DESCRIPTION, CONF_LICENSE_PLATE, CONF_PERMIT, DOMAIN
@@ -72,10 +71,10 @@ class ParkingSwitch(CoordinatorEntity[ParkeerserviceCoordinator], SwitchEntity):
         return bool(self._active_sessions())
 
     async def async_turn_on(self, **kwargs: Any) -> None:  # noqa: ANN401, ARG002
-        """Start a session lasting until the end of the day."""
+        """Start a session lasting until the planned end time."""
         if self.is_on:
             return
-        end = dt_util.now().replace(hour=23, minute=59, second=59, microsecond=0)
+        end = self.coordinator.next_end(self._plate)
         await self.coordinator.async_call(
             self.coordinator.client.start, self._plate, self._permit, end
         )

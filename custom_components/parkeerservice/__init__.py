@@ -14,7 +14,7 @@ from .coordinator import ParkeerserviceConfigEntry, ParkeerserviceCoordinator
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
-PLATFORMS: list[Platform] = [Platform.SWITCH]
+PLATFORMS: list[Platform] = [Platform.SWITCH, Platform.TIME]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ParkeerserviceConfigEntry) -> bool:
