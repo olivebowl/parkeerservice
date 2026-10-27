@@ -1,0 +1,31 @@
+name: Release
+
+# Tag a release as `vX.Y.Z`; the tag must match the version in manifest.json.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --locked
+      - run: uv run ruff check . && uv run mypy && uv run pytest
+      - name: Check the tag matches manifest.json
+        run: |
+          version=$(jq -r .version custom_components/parkeerservice/manifest.json)
+          if [ "v$version" != "${GITHUB_REF_NAME}" ]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match manifest version v$version" >&2
+            exit 1
+          fi
+      - name: Build the zip
+        run: cd custom_components/parkeerservice && zip -r ../../parkeerservice.zip .
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" parkeerservice.zip --generate-notes --title "$GITHUB_REF_NAME"
