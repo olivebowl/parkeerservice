@@ -1,0 +1,55 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Parkeerservice",
+        "description": "Vul het portaal van je gemeente (bijv. {example}) en je inloggegevens in.",
+        "data": {
+          "host": "Portaal-URL",
+          "email": "E-mailadres",
+          "password": "Wachtwoord"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Opnieuw inloggen",
+        "description": "Het wachtwoord werkt niet meer. Vul het nieuwe wachtwoord in.",
+        "data": {
+          "password": "Wachtwoord"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Onjuist e-mailadres of wachtwoord.",
+      "cannot_connect": "Kan het portaal niet bereiken."
+    },
+    "abort": {
+      "already_configured": "Dit account is al ingesteld.",
+      "reauth_successful": "Opnieuw ingelogd."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Auto's",
+        "menu_options": {
+          "add_car": "Auto toevoegen",
+          "remove_car": "Auto verwijderen"
+        }
+      },
+      "add_car": {
+        "title": "Auto toevoegen",
+        "data": {
+          "description": "Naam",
+          "license_plate": "Kenteken",
+          "permit": "Vergunning"
+        }
+      },
+      "remove_car": {
+        "title": "Auto's verwijderen",
+        "data": {
+          "cars": "Te verwijderen auto's"
+        }
+      }
+    }
+  }
+}

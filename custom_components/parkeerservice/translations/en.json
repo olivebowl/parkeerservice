@@ -1,0 +1,55 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Parkeerservice",
+        "description": "Enter the portal of your city (e.g. {example}) and your login.",
+        "data": {
+          "host": "Portal URL",
+          "email": "Email",
+          "password": "Password"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Log in again",
+        "description": "The password no longer works. Enter the new password.",
+        "data": {
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Wrong email or password.",
+      "cannot_connect": "Could not reach the portal."
+    },
+    "abort": {
+      "already_configured": "This account is already configured.",
+      "reauth_successful": "Re-authentication successful."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Cars",
+        "menu_options": {
+          "add_car": "Add a car",
+          "remove_car": "Remove a car"
+        }
+      },
+      "add_car": {
+        "title": "Add a car",
+        "data": {
+          "description": "Name",
+          "license_plate": "License plate",
+          "permit": "Permit"
+        }
+      },
+      "remove_car": {
+        "title": "Remove cars",
+        "data": {
+          "cars": "Cars to remove"
+        }
+      }
+    }
+  }
+}
