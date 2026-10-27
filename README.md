@@ -17,7 +17,7 @@ I made this so I could automate the registration with Home Assistant based on ca
 3. **Settings → Devices & services → Add integration → Parkeerservice**, then enter your city's portal URL (e.g. `https://parkstart-LOCATION.parkpermit.eu`), email and password.
 4. Click **Configure** on the integration to add your cars: name, license plate and permit (picked from a list of your permits).
 
-Every car becomes a switch. Turning it on starts a session until the end of the day, turning it off stops it. All cars share one login and one request every 2 minutes. If your password changes, Home Assistant asks for the new one.
+Every car gets a switch and an end time. Turning the switch on starts a session until the end time (default 23:59, set it with the `time.set_value` action or on the dashboard), turning it off stops it. While a session is running the end time shows when it ends. All cars share one login and one request every 2 minutes. If your password changes, Home Assistant asks for the new one.
 
 ## Development
 
@@ -28,4 +28,4 @@ uv run pytest        # tests with coverage (min. 95%)
 uv run ruff check . && uv run ruff format --check . && uv run mypy
 ```
 
-Releases: bump `version` in `custom_components/parkeerservice/manifest.json` and `pyproject.toml`, then push a tag `vX.Y.Z`. The release workflow checks the tag, runs the checks and publishes a GitHub release with the zip for HACS.
+Releases are automated with [release-please](https://github.com/googleapis/release-please): use [conventional commits](https://www.conventionalcommits.org) (`feat:`, `fix:`, ...) on `main`. A release PR with the changelog and version bump is kept up to date; merging it tags the release and attaches the zip for HACS.
